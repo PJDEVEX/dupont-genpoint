@@ -1,9 +1,9 @@
 python-dotenv
 google-generativeai
-streamlit
+streamlit>=1.33.0
 google-cloud-aiplatform
 google-api-python-client 
 google-auth-httplib2 
 google-auth-oauthlib
-
+google-cloud-storage
 -e .

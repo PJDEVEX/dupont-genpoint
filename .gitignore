@@ -160,5 +160,5 @@ cython_debug/
 #.idea/
 
 # Google Credentials
-credentials/
-credentials/practic-gemini-a2a6253beaaa.json
+# credentials/
+credentials/practic-gemini-1f62aca0b716.json
