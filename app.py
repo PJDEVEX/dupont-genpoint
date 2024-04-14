@@ -17,9 +17,10 @@ load_dotenv()
 BUCKET_NAME = os.getenv('BUCKET_NAME')
 
 # Streamlit app
-st.set_page_config(page_title="Financial Assistant", page_icon=":robot:")
+st.set_page_config(page_title="DuPont GenPoint")
 
-st.header("Dupont GenPoint")
+st.header("DuPont GenPoint  :robot_face:")
+
 input = st.text_input("Input Prompt: ", key="input")
 
 uploaded_file=st.file_uploader("Choose a file...", type=["jpg", "jpeg", "png", "webp"])
