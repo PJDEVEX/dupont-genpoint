@@ -1,18 +1,43 @@
 # Dupont GenPoint
 
-![Dupont GenPoint]()
+![Dupont GenPoint](https://res.cloudinary.com/pjdevex/image/upload/v1713107004/Screenshot_2024-04-14_170232_hdhegb.png)
 
-<h2>Introducing FpBot: Trusted Companion for Financial Professionals</h2>
+[Click here view the Demo...](https://drive.google.com/file/d/1Vj0Qv3x4yj6P39U_Zxsk2wD5sv1f312r/view?usp=sharing)
 
-FpBot is your go-to assistant for navigating the intricate world of accounting and auditing standards, as well as tax regulations in Sri Lanka. Whether you're a seasoned financial expert or just starting out in the industry, FpBot is here to provide you with timely and accurate information to help you stay compliant and informed. With FpBot by your side, you can tackle complex financial challenges with confidence and ease. Let FpBot be your guide as you navigate the dynamic landscape of finance in Sri Lanka.
+<h2>DuPont GenPoint: A Powerful Financial Analysis Tool</h2>
+
+<strong>DuPont GenPoint</strong> is a powerful financial analysis application designed to empower financial professionals with the capabilities to extract strategic insights from complex financial data from image based sources.
+
+## Key Features:
+
+- <strong>Automated Data Analysis:</strong> Leverage the power of Vertext AI's generative AI framework and Gemini-1.0-Pro-Vision models to automate data analysis from various financial sources.
+- <strong>Strategic Recommendations:</strong> Gain actionable insights and strategic recommendations derived from a deep understanding of financial statements, valuation, and financial modeling.
+- <strong>Streamlined User Experience:</strong> The intuitive web app interface allows you to effortlessly upload files, receive analysis, and explore results.
+
+## Benefits:
+
+- <strong>Improved Efficiency:</strong> Automate time-consuming data analysis tasks, freeing up valuable time for strategic decision-making.
+- <strong>Data-Driven Decisions:</strong> Make informed choices based on accurate and well-reasoned analysis.
+- <strong>Enhanced Accuracy:</strong> Mitigate human error with AI-powered data processing and analysis.
+- <strong>Simplified Collaboration:</strong> Share insights and recommendations seamlessly with colleagues through the web app interface.
+
+## Future development:
+- Financial professional, please feel free to share your challenges that you face on your daily routine. We are here to develop the ultimate system for you...
+
+## Special Credit
+Special thanks are due to my better half, [Ruvini](https://www.linkedin.com/in/ruvini-perera/), for her unwavering support. I also extend my gratitude to [Code Institute](https://codeinstitute.net/) for laying the foundation of my coding career and helping me discover my passion.
+
+
+This README provides a comprehensive guide to installing, configuring, using DuPont GenPoint to unlock the power of <strong>AI-driven financial analysis</strong> while presenting the process flow of the project and core tech stack used for the development.
 
 ## How to set up the project
 
 <details>
   <summary>Click here...</summary>
+
 ### Step 1: Clone the repo
 ```bash
-Project repo: https://github.com/PJDEVEX/fpbot
+Project repo: https://github.com/PJDEVEX/dupont-genpoint
 ```
 ### Step 2: Create Virtual Environment
 - Activate virtual environment
@@ -20,10 +45,10 @@ Project repo: https://github.com/PJDEVEX/fpbot
 source ~/anaconda3/bin/activate
 ```
 ```bash
-conda create -n fpbot python=3.10 -y
+conda create -n p-gemini python=3.10 -y
 ```
 ```bash
-conda activate fbbot
+conda activate p-gemini
 ```
 
 ### Step3: Install project dependencies
@@ -37,40 +62,41 @@ pip3 install -r requirements.txt
 ```ini
 import os
 
-PINECONE_API_KEY=xxxxxxxxxxxxxxxxxxxxxx
-PINECONE_INDEX_NAME=xxx-xxxxxxxxxxxxxxx
-PINECONE_ENV=xxxxxxxxxxxxxxxxxxxxxxxxxx
-
-EMBEDDING_MODEL_NAME=xxxxxxxxxxxxxxxxxx
-HOST=0.0.0.0
-PORT=5000
+GOOGLE_APPLICATION_CREDENTIALS="xxxxxxxxxxxxxxxxxxxxxxxxxx"
+PROJECT_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+REGION=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+MODEL=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+BUCKET_NAME=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 ```
 
-### Step5: Chat Model
+### Step5: Google Cloud 
 
-Download the quantized model from `huggingface` :hugs:, create a model folder and keep the model in the folder, 
-  - The chat model used is [llama-2-7b-chat.ggmlv3.q4_0.bin](https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML/blob/main/llama-2-7b-chat.ggmlv3.q4_0.bin) 
-  - Downloaded from [here...](https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML/resolve/main/llama-2-7b-chat.ggmlv3.q4_0.bin?download=true)
-  - Create a `model` file in `root` directory
-  - Paste the model to `model` directory
+- Create a new project
+- Create a new credentials - Service Account (Grant the permission so that account can have admin permission to both `Vertextai` as well as `Google Cloud Storage` )
+- Add a new api key and download the json
+- Optionally, the above can be done using the google cloud cli
+- move the json file to credentials folder
 
-### Step6: Embedding Model
-  - The embedding model used is [sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2). 
-  - Please copy ```bash sentence-transformers/all-MiniLM-L6-v2``` and past in .env file.
-  - It uses 384 dimensions.
+### Step6: Google Google Cloud Storage
+- Create a google bucket
+- update the ENV var
 
-### Step7: Create a Pinecone Index
-- Visit [Pinecone.io](https://docs.pinecone.io/home), create an API and Index
-- Dimension shall be `384` or depend on the embedding model being used
-- Update .env accordingly
+### Step7. Update Vartextai variables
+- Project_ID can be found in the .json file downloaded earlier.
+- Select a region at your [choice](https://cloud.google.com/compute/docs/regions-zones).
+- Select a LLM model of your [choice](https://ai.google.dev/models/gemini) that support text image and text compatibility. 
+
+### Step6: Install local Variables
+  - run `pip3 install requirements.txt`
+
 
 ### Step8: Execute locally
-- use the command `python3 app.py`.
+- use the command `streamlit run app.py`.
 
 </details>
 
-## The process flow
+## The project flow
 
 <details>
   <summary>Click here...</summary>
@@ -79,6 +105,7 @@ Download the quantized model from `huggingface` :hugs:, create a model folder an
 
 
 ### Tech Stack
+- DuPont GenPoint is built using:
 
 <details>
 <summary>Click here...</summary>
@@ -86,12 +113,8 @@ Download the quantized model from `huggingface` :hugs:, create a model folder an
 |#|Component|Dependency/Library|version|Badge|Purpose|Ref|
 |---|:---|:---|:---|:---|:---|:---|
 |1|Programming Language| Python|3.10|![Python](https://img.shields.io/badge/Python-3.10-blue.svg)|Interpriter|[Python](https://www.python.org/)|
-|2|Generative AI Framework(s)|LangChain|0.1.14|[![langchain](https://img.shields.io/badge/langchain-0.0.225-orange)](https://pypi.org/project/langchain/0.1.14/)|Framework for building the application with LLMs through composability|[Langchain](https://python.langchain.com/docs/get_started/introduction)
-|3|"|LLamaIndex||[![LLama Index](https://img.shields.io/badge/LLama_Index-G.%20Framework-<COLOR>.svg)](https://your-link-url)|data framework for building LLM applications|[lamaIndex](https://www.llamaindex.ai/)
-|4| Frontend-webapp|Flask|3.0.2|[![Flask](https://img.shields.io/badge/Flask-3.0.2-green)](https://flask.palletsprojects.com/)|||
-|5|LLM|Meta Llama2||[![Meta LLama2](https://img.shields.io/badge/Meta_LLama2-LLM-blueviolet)](https://example.com)||[Meta Llama2](https://llama.meta.com/llama2/)|
-|6|VectorDB|Pinecone-client|3.2.2|[![Pinecone Client](https://img.shields.io/badge/Pinecone_Client-orange?style=for-the-badge&logo=python)](https://pypi.org/project/pinecone-client/)|VectorDB|[Pinecone-client](https://pypi.org/project/pinecone-client/)|
-|7|Transformer|ctransformers|0.2.27|[![ctransformers](https://img.shields.io/badge/ctransformers-v0.2.5-orange)](https://pypi.org/project/ctransformers/0.2.27/)|Python bindings for the Transformer models implemented in C/C++ using GGML library.|[C Transformers](https://python.langchain.com/docs/integrations/llms/ctransformers)|
-|8|Embedding tool|sentence-transformers|2.6.1|[![Sentence Transformers](https://img.shields.io/pypi/v/sentence-transformers.svg?color=orange)](https://pypi.org/project/sentence-transformers/)| Multilingual Sentence, Paragraph, and Image Embeddings using BERT & Co.|[Sentence Transformers on Hugging Face](https://python.langchain.com/docs/integrations/text_embedding/sentence_transformers)|
+|2|Generative AI Framework|VertextAI|1.47.0|[![VertextAI](https://img.shields.io/badge/vertextai-1.47.0-blue)](https://pypi.org/project/vertextai/1.47.0/)|fully-managed, unified AI development platform for building and using generative AI|[Vertex AI ](https://cloud.google.com/vertex-ai?hl=en#innovate-faster-with-enterprise-ready-ai-enhanced-by-gemini-models)
+|3|Multimodel Generative AI Model|Gemini-1.0-Pro-Vision|1.0|[![Gemini-Pro-1.0-Vision](https://img.shields.io/badge/Gemini_pro_vision-1.0-blue.svg)]()|Multimodal models in the Google Cloud console|[Gemini-1.0-Pro-Vision](https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/gemini-pro-vision?project=practice-gemini)
+|4| Web APP|Streamlit|1.33.0|[![Streamlit](https://img.shields.io/badge/Streamlit-1.33.0-red)](https://pypi.org/project/streamlit/)|A faster way to build and share data apps|[Streamlit](https://pypi.org/project/streamlit/)
 
 </details>
